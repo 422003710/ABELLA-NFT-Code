@@ -1,0 +1,22 @@
+contract MyToken {
+    // public variables here
+    string public tokenName = "Jonah Mae";
+    string public tokenAbbrv = "JM";
+    uint public tokenSupply = 0;
+
+    // mapping variable here
+    mapping(address => uint) public balances;
+
+    // mint function
+    function mint(address _address, uint _value) public {
+        tokenSupply += _value;
+        balances[_address] += _value;
+    }
+
+    // burn function
+    function burn(address _address, uint _value) public {
+        require(balances[_address] >= _value, "Insufficient balance");
+        tokenSupply -= _value;
+        balances[_address] -= _value; 
+    }
+}
